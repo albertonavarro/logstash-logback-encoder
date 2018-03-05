@@ -37,47 +37,7 @@ public class SafeStructuredArguments {
      *
      * @see ObjectAppendingMarker
      */
-    public static StructuredArgument skv(String key, Long value) {
-        return kv(key, value);
-    }
-
-    /**
-     * Adds "key":"value" to the JSON event AND
-     * name=value to the formatted message.
-     *
-     * @see ObjectAppendingMarker
-     */
-    public static StructuredArgument skv(String key, Integer value) {
-        return kv(key, value);
-    }
-
-    /**
-     * Adds "key":"value" to the JSON event AND
-     * name=value to the formatted message.
-     *
-     * @see ObjectAppendingMarker
-     */
-    public static StructuredArgument skv(String key, Enum value) {
-        return kv(key, value);
-    }
-
-    /**
-     * Adds "key":"value" to the JSON event AND
-     * name=value to the formatted message.
-     *
-     * @see ObjectAppendingMarker
-     */
-    public static StructuredArgument skv(String key, Double value) {
-        return kv(key, value);
-    }
-
-    /**
-     * Adds "key":"value" to the JSON event AND
-     * name=value to the formatted message.
-     *
-     * @see ObjectAppendingMarker
-     */
-    public static StructuredArgument skv(String key, Float value) {
+    public static StructuredArgument skv(String key, Number value) {
         return kv(key, value);
     }
 
@@ -149,6 +109,61 @@ public class SafeStructuredArguments {
      * @see ObjectAppendingMarker
      */
     public static StructuredArgument sa(String fieldName, UUID... objects) {
+        return new ObjectAppendingMarker(fieldName, objects);
+    }
+
+    /**
+     * Adds a field to the JSON event whose key is fieldName and whose value is a JSON array of objects AND
+     * a string version of the array to the formatted message.
+     * @param fieldName Field name
+     * @param  objects String collection
+     * @see ObjectAppendingMarker
+     */
+    public static StructuredArgument sas(String fieldName, Collection<String> objects) {
+        return new ObjectAppendingMarker(fieldName, objects);
+    }
+
+    /**
+     * Adds a field to the JSON event whose key is fieldName and whose value is a JSON array of objects AND
+     * a string version of the array to the formatted message.
+     * @param fieldName Field name
+     * @param  objects UUID collection
+     * @see ObjectAppendingMarker
+     */
+    public static StructuredArgument sau(String fieldName, Collection<UUID> objects) {
+        return new ObjectAppendingMarker(fieldName, objects);
+    }
+
+    /**
+     * Adds a field to the JSON event whose key is fieldName and whose value is a JSON array of objects AND
+     * a string version of the array to the formatted message.
+     * @param fieldName Field name
+     * @param  objects Number collection
+     * @see ObjectAppendingMarker
+     */
+    public static StructuredArgument san(String fieldName, Collection<Number> objects) {
+        return new ObjectAppendingMarker(fieldName, objects);
+    }
+
+    /**
+     * Adds a field to the JSON event whose key is fieldName and whose value is a JSON array of objects AND
+     * a string version of the array to the formatted message.
+     * @param fieldName Field name
+     * @param  objects Boolean collection
+     * @see ObjectAppendingMarker
+     */
+    public static StructuredArgument sab(String fieldName, Collection<Boolean> objects) {
+        return new ObjectAppendingMarker(fieldName, objects);
+    }
+
+    /**
+     * Adds a field to the JSON event whose key is fieldName and whose value is a JSON array of objects AND
+     * a string version of the array to the formatted message.
+     * @param fieldName Field name
+     * @param  objects Enum collection
+     * @see ObjectAppendingMarker
+     */
+    public static StructuredArgument sae(String fieldName, Collection<Enum> objects) {
         return new ObjectAppendingMarker(fieldName, objects);
     }
 }
