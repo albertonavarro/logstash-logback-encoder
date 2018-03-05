@@ -118,8 +118,37 @@ public class SafeStructuredArguments {
      *
      * @see ObjectAppendingMarker
      */
-    public static StructuredArgument sa(String fieldName, Collection<String> objects) {
+    public static StructuredArgument sa(String fieldName, Number... objects) {
         return new ObjectAppendingMarker(fieldName, objects);
     }
 
+    /**
+     * Adds a field to the JSON event whose key is fieldName and whose value is a JSON array of objects AND
+     * a string version of the array to the formatted message.
+     *
+     * @see ObjectAppendingMarker
+     */
+    public static StructuredArgument sa(String fieldName, Boolean... objects) {
+        return new ObjectAppendingMarker(fieldName, objects);
+    }
+
+    /**
+     * Adds a field to the JSON event whose key is fieldName and whose value is a JSON array of objects AND
+     * a string version of the array to the formatted message.
+     *
+     * @see ObjectAppendingMarker
+     */
+    public static StructuredArgument sa(String fieldName, Enum... objects) {
+        return new ObjectAppendingMarker(fieldName, objects);
+    }
+
+    /**
+     * Adds a field to the JSON event whose key is fieldName and whose value is a JSON array of objects AND
+     * a string version of the array to the formatted message.
+     *
+     * @see ObjectAppendingMarker
+     */
+    public static StructuredArgument sa(String fieldName, UUID... objects) {
+        return new ObjectAppendingMarker(fieldName, objects);
+    }
 }
