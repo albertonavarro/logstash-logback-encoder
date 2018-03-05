@@ -141,7 +141,7 @@ public class SafeStructuredArguments {
      * @param  objects Number collection
      * @see ObjectAppendingMarker
      */
-    public static StructuredArgument san(String fieldName, Collection<Number> objects) {
+    public static StructuredArgument san(String fieldName, Collection<? extends Number> objects) {
         return new ObjectAppendingMarker(fieldName, objects);
     }
 
