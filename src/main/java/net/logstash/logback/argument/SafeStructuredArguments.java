@@ -11,6 +11,11 @@ import static net.logstash.logback.argument.StructuredArguments.kv;
 
 public class SafeStructuredArguments {
 
+
+    private static StructuredArgument internalSkv(String key, Object value) {
+        return kv(key.toLowerCase(), value);
+    }
+
     /**
      * Adds "key":"value" to the JSON event AND
      * name=value to the formatted message.
@@ -18,7 +23,7 @@ public class SafeStructuredArguments {
      * @see ObjectAppendingMarker
      */
     public static StructuredArgument skv(String key, String value) {
-        return kv(key, value);
+        return internalSkv(key, value);
     }
 
     /**
@@ -28,7 +33,7 @@ public class SafeStructuredArguments {
      * @see ObjectAppendingMarker
      */
     public static StructuredArgument skv(String key, Boolean value) {
-        return kv(key, value);
+        return internalSkv(key, value);
     }
 
     /**
@@ -38,7 +43,7 @@ public class SafeStructuredArguments {
      * @see ObjectAppendingMarker
      */
     public static StructuredArgument skv(String key, Number value) {
-        return kv(key, value);
+        return internalSkv(key, value);
     }
 
     /**
@@ -48,7 +53,7 @@ public class SafeStructuredArguments {
      * @see ObjectAppendingMarker
      */
     public static StructuredArgument skv(String key, UUID value) {
-        return kv(key, value);
+        return internalSkv(key, value);
     }
 
     /**
@@ -61,6 +66,9 @@ public class SafeStructuredArguments {
         return new MapEntriesAppendingMarker(map);
     }
 
+    private static StructuredArgument internalSa(String fieldName, Object... objects) {
+        return new ObjectAppendingMarker(fieldName.toLowerCase(), objects);
+    }
 
     /**
      * Adds a field to the JSON event whose key is fieldName and whose value is a JSON array of objects AND
@@ -69,7 +77,7 @@ public class SafeStructuredArguments {
      * @see ObjectAppendingMarker
      */
     public static StructuredArgument sa(String fieldName, String... objects) {
-        return new ObjectAppendingMarker(fieldName, objects);
+        return internalSa(fieldName, objects);
     }
 
     /**
@@ -79,7 +87,7 @@ public class SafeStructuredArguments {
      * @see ObjectAppendingMarker
      */
     public static StructuredArgument sa(String fieldName, Number... objects) {
-        return new ObjectAppendingMarker(fieldName, objects);
+        return internalSa(fieldName, objects);
     }
 
     /**
@@ -89,7 +97,7 @@ public class SafeStructuredArguments {
      * @see ObjectAppendingMarker
      */
     public static StructuredArgument sa(String fieldName, Boolean... objects) {
-        return new ObjectAppendingMarker(fieldName, objects);
+        return internalSa(fieldName, objects);
     }
 
     /**
@@ -99,7 +107,7 @@ public class SafeStructuredArguments {
      * @see ObjectAppendingMarker
      */
     public static StructuredArgument sa(String fieldName, Enum... objects) {
-        return new ObjectAppendingMarker(fieldName, objects);
+        return internalSa(fieldName, objects);
     }
 
     /**
@@ -109,7 +117,7 @@ public class SafeStructuredArguments {
      * @see ObjectAppendingMarker
      */
     public static StructuredArgument sa(String fieldName, UUID... objects) {
-        return new ObjectAppendingMarker(fieldName, objects);
+        return internalSa(fieldName, objects);
     }
 
     /**
@@ -120,7 +128,7 @@ public class SafeStructuredArguments {
      * @see ObjectAppendingMarker
      */
     public static StructuredArgument sas(String fieldName, Collection<String> objects) {
-        return new ObjectAppendingMarker(fieldName, objects);
+        return internalSa(fieldName, objects);
     }
 
     /**
@@ -131,7 +139,7 @@ public class SafeStructuredArguments {
      * @see ObjectAppendingMarker
      */
     public static StructuredArgument sau(String fieldName, Collection<UUID> objects) {
-        return new ObjectAppendingMarker(fieldName, objects);
+        return internalSa(fieldName, objects);
     }
 
     /**
@@ -142,7 +150,7 @@ public class SafeStructuredArguments {
      * @see ObjectAppendingMarker
      */
     public static StructuredArgument san(String fieldName, Collection<? extends Number> objects) {
-        return new ObjectAppendingMarker(fieldName, objects);
+        return internalSa(fieldName, objects);
     }
 
     /**
@@ -153,7 +161,7 @@ public class SafeStructuredArguments {
      * @see ObjectAppendingMarker
      */
     public static StructuredArgument sab(String fieldName, Collection<Boolean> objects) {
-        return new ObjectAppendingMarker(fieldName, objects);
+        return internalSa(fieldName, objects);
     }
 
     /**
@@ -164,6 +172,6 @@ public class SafeStructuredArguments {
      * @see ObjectAppendingMarker
      */
     public static StructuredArgument sae(String fieldName, Collection<Enum> objects) {
-        return new ObjectAppendingMarker(fieldName, objects);
+        return internalSa(fieldName, objects);
     }
 }
